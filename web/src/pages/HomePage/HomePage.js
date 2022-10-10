@@ -40,11 +40,11 @@ const HomePage = () => {
     <>
       <MetaTags title="Home" description="Home page" />
 
-      <div className="mx-52 flex justify-end py-8">
+      <div className="mx-6 flex flex-wrap justify-start py-4 md:mx-14 lg:mx-20 xl:mx-52">
         {scores.map((s, id) => (
-          <div key={id}>
+          <div className="py-4" key={id}>
             <button
-              className="px-3 hover:rounded-full hover:bg-slate-100"
+              className="px-4 hover:rounded-full hover:bg-slate-100"
               onClick={() => setCurrentScore(s.score)}
             >
               {s.score}
@@ -53,7 +53,15 @@ const HomePage = () => {
         ))}
       </div>
 
-      <div className="mx-52 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div
+        className="
+        mx-6
+      grid grid-cols-1 gap-6 md:mx-14
+      md:grid-cols-2 md:gap-14 lg:mx-20
+      lg:grid-cols-3 lg:gap-6 xl:mx-52
+      xl:grid-cols-4
+      "
+      >
         <CardonScoreCell score={currentScore} />
       </div>
     </>

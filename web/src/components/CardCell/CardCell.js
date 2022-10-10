@@ -33,9 +33,9 @@ export const Success = ({ card }) => {
         </div>
 
         <div className="grid grid-cols-3 gap-12 text-center">
-          <SkillCircle name="Skill" number={card.skill} color="green" />
-          <SkillCircle name="Aura" number={card.aura} color="yellow" />
-          <SkillCircle name="Stamina" number={card.stamina} color="red" />
+          <SkillCircle name="Skill" number={card.skill} />
+          <SkillCircle name="Aura" number={card.aura} />
+          <SkillCircle name="Stamina" number={card.stamina} />
         </div>
       </div>
     </div>

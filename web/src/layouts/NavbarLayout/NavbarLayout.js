@@ -5,7 +5,7 @@ import logo from 'src/assets/logo.png'
 const NavbarLayout = ({ children }) => {
   return (
     <>
-      <div className="flex flex-row items-center justify-between bg-white px-52 py-6 drop-shadow-sm">
+      <div className="flex flex-row items-center justify-between bg-white px-6 py-6 drop-shadow-sm md:px-14 lg:px-20 xl:px-52">
         <h1 className="text-2xl font-bold text-green-500">
           <Link to={routes.home()}>
             <div className="flex items-end text-xl">
@@ -14,10 +14,24 @@ const NavbarLayout = ({ children }) => {
           </Link>
         </h1>
         <p>
-          <Link to={routes.support()}>Support</Link>
+          <Link className="hover:text-green-500" to={routes.support()}>
+            Support
+          </Link>
         </p>
       </div>
-      <main>{children}</main>
+      <main className="pb-6">{children}</main>
+      <div className="border-t px-6 py-12 md:px-14 lg:px-20 xl:px-52">
+        VeeFriends Trading Cards - Made by{' '}
+        <a
+          href="https://twitter.com/hapaise"
+          target="_blank"
+          rel="noreferrer"
+          className="underline"
+        >
+          @hapaise
+        </a>{' '}
+        - Not affliated with VeeFriends
+      </div>
     </>
   )
 }

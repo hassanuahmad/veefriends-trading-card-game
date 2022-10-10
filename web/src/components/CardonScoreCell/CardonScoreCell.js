@@ -25,12 +25,14 @@ export const Success = ({ cardonScore }) => {
       <Link to={routes.singleCard({ id: card.id })}>
         <div className="group rounded-2xl border-2 bg-white p-6">
           <img className="rounded-2xl" src={card.image} alt="" />
-          <h1 className="truncate py-2 text-2xl font-medium group-hover:text-green-500">
-            {card.name}
-          </h1>
-          <p className="text-sm">
-            <b className="text-2xl">{card.score} </b>SCORE
-          </p>
+          <div>
+            <h1 className="truncate py-2 text-2xl font-medium group-hover:text-green-500">
+              {card.name}
+            </h1>
+            <p className="text-sm">
+              <b className="text-2xl">{card.score} </b>SCORE
+            </p>
+          </div>
         </div>
       </Link>
     </div>
