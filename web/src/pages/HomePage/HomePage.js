@@ -44,7 +44,7 @@ const HomePage = () => {
         {scores.map((s, id) => (
           <div className="py-4" key={id}>
             <button
-              className="px-4 hover:rounded-full hover:bg-slate-100"
+              className="px-6 hover:rounded-full hover:bg-slate-100"
               onClick={() => setCurrentScore(s.score)}
             >
               {s.score}
