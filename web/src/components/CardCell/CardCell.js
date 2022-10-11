@@ -24,17 +24,17 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ card }) => {
   return (
-    <div className="grid grid-cols-1 px-52 py-12 font-bold md:grid-cols-2">
-      <img className="rounded-3xl shadow-2xl" src={card.image} alt="" />
-      <div>
+    <div className="mx-6 grid grid-cols-1 py-12 font-bold md:mx-14 lg:mx-20 lg:grid-cols-2 xl:mx-52">
+      <img className="rounded-3xl shadow-2xl" src={`../${card.image}`} alt="" />
+      <div className="mt-6 md:ml-6">
         <h1 className="text-5xl">{card.name}</h1>
         <div className="py-12 text-center">
           <SkillCircle name="Score" color="zinc" number={card.score} />
         </div>
 
         <div className="grid grid-cols-3 gap-12 text-center">
-          <SkillCircle name="Skill" number={card.skill} />
           <SkillCircle name="Aura" number={card.aura} />
+          <SkillCircle name="Skill" number={card.skill} />
           <SkillCircle name="Stamina" number={card.stamina} />
         </div>
       </div>

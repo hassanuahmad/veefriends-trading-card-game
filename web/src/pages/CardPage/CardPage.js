@@ -7,7 +7,9 @@ const CardPage = ({ id }) => {
     <>
       <MetaTags title="Card" description="Card page" />
 
-      <CardCell id={id} />
+      <div>
+        <CardCell id={id} />
+      </div>
     </>
   )
 }

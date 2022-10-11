@@ -56,9 +56,11 @@ const HomePage = () => {
       <div
         className="
         mx-6
-      grid grid-cols-1 gap-6 md:mx-14
-      md:grid-cols-2 md:gap-14 lg:mx-20
-      lg:grid-cols-3 lg:gap-6 xl:mx-52
+      grid grid-cols-1 gap-6
+       md:mx-14 md:grid-cols-2
+      md:gap-14 lg:mx-20 lg:grid-cols-3
+      lg:gap-6
+      xl:mx-52
       xl:grid-cols-4
       "
       >
