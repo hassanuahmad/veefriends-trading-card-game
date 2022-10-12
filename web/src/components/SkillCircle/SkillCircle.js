@@ -1,9 +1,9 @@
-const SkillCircle = ({ name, number }) => {
+const SkillCircle = ({ name, number, textColor, borderColor }) => {
   return (
     <div>
-      <p className={`flex flex-col rounded-3xl border-2 p-6`}>
+      <p className={`flex flex-col rounded-3xl border-2 ${borderColor} p-6`}>
         <span className="text-3xl">{number}</span>
-        <span className="text-zinc-500">{name}</span>
+        <span className={`${textColor}`}>{name}</span>
       </p>
     </div>
   )
