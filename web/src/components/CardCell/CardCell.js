@@ -32,7 +32,7 @@ export const Success = ({ card }) => {
           <SkillCircle name="Score" color="zinc" number={card.score} />
         </div>
 
-        <div className="grid grid-cols-3 gap-12 text-center">
+        <div className="grid grid-cols-3 gap-8 text-center">
           <SkillCircle
             name="Aura"
             number={card.aura}
