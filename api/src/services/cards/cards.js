@@ -16,6 +16,10 @@ export const cardonScore = ({ score }) => {
   })
 }
 
+export const cardonAlphabet = ({ nameAlphabet }) => {
+  return db.card.findMany({ where: { nameAlphabet } })
+}
+
 export const createCard = ({ input }) => {
   return db.card.create({
     data: input,
