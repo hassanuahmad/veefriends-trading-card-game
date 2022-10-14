@@ -13,6 +13,7 @@ generator client {
 model Card {
   id        Int @id @default(autoincrement())
   name      String
+  nameAlphabet String?
   pageName  String
   image     String
   score     Int
