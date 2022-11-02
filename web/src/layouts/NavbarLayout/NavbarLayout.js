@@ -1,8 +1,11 @@
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
 import logo from 'src/assets/logo.png'
 
 const NavbarLayout = ({ children }) => {
+  const { isAuthenticated, currentUser, logOut } = useAuth()
+
   return (
     <>
       <div className="flex flex-row items-center justify-between bg-white px-6 py-6 drop-shadow-sm md:px-14 lg:px-20 xl:px-52">
@@ -18,6 +21,18 @@ const NavbarLayout = ({ children }) => {
             Support
           </Link>
         </p>
+        <div>
+          {isAuthenticated ? (
+            <div>
+              <span>Logged in as {currentUser?.email}</span>{' '}
+              <button type="button" onClick={logOut}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link to={routes.login()}>Login</Link>
+          )}
+        </div>
       </div>
       <main className="pb-6">{children}</main>
       <div className="border-t px-6 py-12 md:px-14 lg:px-20 xl:px-52">

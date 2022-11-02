@@ -5,10 +5,12 @@
 # For the full list of options, see the "App Configuration: redwood.toml" doc:
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
 
+# apiUrl = "/.netlify/functions"
+
 [web]
   title = "VF Trading Cards"
   port = 8910
-  apiUrl = "/.netlify/functions"
+  apiUrl = "/.redwood/functions"
   includeEnvironmentVariables = [] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web
 [api]
   port = 8911
