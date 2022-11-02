@@ -1,8 +1,7 @@
 import { useState, Fragment } from 'react'
 
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Menu } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 import { MetaTags } from '@redwoodjs/web'
 
@@ -71,91 +70,117 @@ const HomePage = () => {
     { alphabet: 'Z' },
   ]
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-
-      <div className="mx-6 my-8 flex justify-end md:mx-14 lg:mx-20 xl:mx-52">
-        {/* ALPHABET START */}
-        <Menu as="div" className="relative mr-12 inline-block text-left">
+      {/* TODO: make this responsive the 2 filters */}
+      <div className="mx-6 mt-8 flex justify-end md:mx-14 lg:mx-20 xl:mx-52">
+        {/* Score Start */}
+        <Menu as="div" className="relative mr-8 inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md bg-green-500 px-6 py-3 text-white hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              <div>
-                Alphabet - {currentAlphabet}
-                <FontAwesomeIcon className="ml-2" icon={faChevronDown} />
-              </div>
+            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
+              Score - {currentScore}
+              <ChevronDownIcon
+                className="-mr-1 ml-2 h-5 w-5"
+                aria-hidden="true"
+              />
             </Menu.Button>
           </div>
 
-          <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            {alphabets.map((a, id) => (
-              <Menu.Item key={id} as={Fragment}>
-                {({ active }) => (
-                  <button
-                    key={id}
-                    className={`${
-                      active ? 'bg-green-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    onClick={() => {
-                      setSurrentAlphabet(a.alphabet)
-                      setCurrentScore(50)
-                    }}
-                  >
-                    {a.alphabet}
-                  </button>
-                )}
-              </Menu.Item>
-            ))}
-          </Menu.Items>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                {scores.map((s, id) => (
+                  <Menu.Item key={id} as={Fragment}>
+                    {({ active }) => (
+                      <button
+                        key={id}
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block w-full px-4 py-2 text-left text-sm'
+                        )}
+                        onClick={() => {
+                          setCurrentScore(s.score)
+                          setSurrentAlphabet()
+                        }}
+                      >
+                        {s.score}
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            </Menu.Items>
+          </Transition>
         </Menu>
-        {/* ALPHABET END */}
+        {/* Score End */}
 
-        {/* SCORE START */}
+        {/* Alphabet Start */}
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md bg-green-500 px-6 py-3 text-white hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              <div>
-                Score - {currentScore}
-                <FontAwesomeIcon className="ml-2" icon={faChevronDown} />
-              </div>
+            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
+              Alphabet - {currentAlphabet}
+              <ChevronDownIcon
+                className="-mr-1 ml-2 h-5 w-5"
+                aria-hidden="true"
+              />
             </Menu.Button>
           </div>
 
-          <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            {scores.map((s, id) => (
-              <Menu.Item key={id} as={Fragment}>
-                {({ active }) => (
-                  <button
-                    key={id}
-                    className={`${
-                      active ? 'bg-green-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    onClick={() => {
-                      setCurrentScore(s.score)
-                      setSurrentAlphabet()
-                    }}
-                  >
-                    {s.score}
-                  </button>
-                )}
-              </Menu.Item>
-            ))}
-          </Menu.Items>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                {alphabets.map((a, id) => (
+                  <Menu.Item key={id} as={Fragment}>
+                    {({ active }) => (
+                      <button
+                        key={id}
+                        className={classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700',
+                          'block w-full px-4 py-2 text-left text-sm'
+                        )}
+                        onClick={() => {
+                          setSurrentAlphabet(a.alphabet)
+                          setCurrentScore(50)
+                        }}
+                      >
+                        {a.alphabet}
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))}
+              </div>
+            </Menu.Items>
+          </Transition>
         </Menu>
-        {/* SCORE END */}
+        {/* Alphabet End */}
       </div>
 
-      <div
-        className="
-        mx-6
-      grid grid-cols-1 gap-6
-       md:mx-14 md:grid-cols-2
-      md:gap-14 lg:mx-20 lg:grid-cols-3
-      lg:gap-6
-      xl:mx-52
-      xl:grid-cols-4
-      "
-      >
+      <div>
         {currentAlphabet == null ? (
           <CardonScoreCell score={currentScore} />
         ) : (
