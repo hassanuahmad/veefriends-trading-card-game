@@ -6,6 +6,6 @@
     "@redwoodjs/api": "3.0.2",
     "@redwoodjs/graphql-server": "3.0.2",
     "@simplewebauthn/server": "^6.3.0-alpha.1",
-    "firebase-admin": "^11.2.0"
+    "firebase-admin": "^11.3.0"
   }
 }

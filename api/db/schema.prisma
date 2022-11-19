@@ -21,9 +21,3 @@ model Card {
   skill     Int
   stamina   Int
 }
-
-model User {
-  email
-  password
-  discodID
-}

@@ -1,11 +1,11 @@
-import admin from 'firebase-admin'
+// import admin from 'firebase-admin'
 
 import { AuthenticationError } from '@redwoodjs/graphql-server'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const adminApp = admin.initializeApp({
-  projectId: process.env.FIREBASE_PROJECT_ID,
-})
+// const adminApp = admin.initializeApp({
+//   projectId: process.env.FIREBASE_PROJECT_ID,
+// })
 
 /**
  * getCurrentUser returns the user information from the decoded JWT
@@ -23,13 +23,8 @@ const adminApp = admin.initializeApp({
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const getCurrentUser = async (
-  decoded,
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  { token, type },
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  { event, context }
-) => {
+export const getCurrentUser = async (decoded) => {
+  console.log({ decoded })
   return decoded
 }
 
@@ -39,7 +34,6 @@ export const getCurrentUser = async (
  * @returns {boolean} - If the currentUser is authenticated
  */
 export const isAuthenticated = () => {
-  console.log('#######CONTEXT CURRENT USER', context.currentUser)
   return !!context.currentUser
 }
 
