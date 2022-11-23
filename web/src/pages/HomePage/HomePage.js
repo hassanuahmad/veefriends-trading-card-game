@@ -77,107 +77,109 @@ const HomePage = () => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-      {/* TODO: make this responsive the 2 filters */}
-      <div className="mx-6 mt-8 flex justify-end md:mx-14 lg:mx-20 xl:mx-52">
-        {/* Score Start */}
-        <Menu as="div" className="relative mr-8 inline-block text-left">
-          <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
-              Score - {currentScore}
-              <ChevronDownIcon
-                className="-mr-1 ml-2 h-5 w-5"
-                aria-hidden="true"
-              />
-            </Menu.Button>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex items-center justify-end py-6 md:justify-end md:space-x-10">
+          <div className="mr-8 flex justify-end md:mr-0 lg:w-0 lg:flex-1">
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
+                  Score - {currentScore}
+                  <ChevronDownIcon
+                    className="-mr-1 ml-2 h-5 w-5"
+                    aria-hidden="true"
+                  />
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    {scores.map((s, id) => (
+                      <Menu.Item key={id} as={Fragment}>
+                        {({ active }) => (
+                          <button
+                            key={id}
+                            className={classNames(
+                              active
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700',
+                              'block w-full px-4 py-2 text-left text-sm'
+                            )}
+                            onClick={() => {
+                              setCurrentScore(s.score)
+                              setSurrentAlphabet()
+                            }}
+                          >
+                            {s.score}
+                          </button>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
           </div>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="py-1">
-                {scores.map((s, id) => (
-                  <Menu.Item key={id} as={Fragment}>
-                    {({ active }) => (
-                      <button
-                        key={id}
-                        className={classNames(
-                          active
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'text-gray-700',
-                          'block w-full px-4 py-2 text-left text-sm'
-                        )}
-                        onClick={() => {
-                          setCurrentScore(s.score)
-                          setSurrentAlphabet()
-                        }}
-                      >
-                        {s.score}
-                      </button>
-                    )}
-                  </Menu.Item>
-                ))}
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
-        {/* Score End */}
-
-        {/* Alphabet Start */}
-        <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
-              Alphabet - {currentAlphabet}
-              <ChevronDownIcon
-                className="-mr-1 ml-2 h-5 w-5"
-                aria-hidden="true"
-              />
-            </Menu.Button>
-          </div>
-
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="py-1">
-                {alphabets.map((a, id) => (
-                  <Menu.Item key={id} as={Fragment}>
-                    {({ active }) => (
-                      <button
-                        key={id}
-                        className={classNames(
-                          active
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'text-gray-700',
-                          'block w-full px-4 py-2 text-left text-sm'
-                        )}
-                        onClick={() => {
-                          setSurrentAlphabet(a.alphabet)
-                          setCurrentScore(50)
-                        }}
-                      >
-                        {a.alphabet}
-                      </button>
-                    )}
-                  </Menu.Item>
-                ))}
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-100">
+                  Alphabet - {currentAlphabet}
+                  <ChevronDownIcon
+                    className="-mr-1 ml-2 h-5 w-5"
+                    aria-hidden="true"
+                  />
+                </Menu.Button>
               </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
-        {/* Alphabet End */}
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    {alphabets.map((a, id) => (
+                      <Menu.Item key={id} as={Fragment}>
+                        {({ active }) => (
+                          <button
+                            key={id}
+                            className={classNames(
+                              active
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700',
+                              'block w-full px-4 py-2 text-left text-sm'
+                            )}
+                            onClick={() => {
+                              setSurrentAlphabet(a.alphabet)
+                              setCurrentScore(50)
+                            }}
+                          >
+                            {a.alphabet}
+                          </button>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
+        </div>
       </div>
 
       <div>
