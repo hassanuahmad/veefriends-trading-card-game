@@ -18,7 +18,10 @@ const NavbarLayout = ({ children }) => {
           <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link to={routes.home()}>
-                <img className="h-8 w-auto sm:h-10" src={logo} alt="" />
+                <div className="flex items-end text-xl font-bold text-green-500">
+                  <img className="h-8 w-auto sm:h-8" src={logo} alt="" /> -
+                  Trading Cards
+                </div>
               </Link>
             </div>
             <div className="-my-2 -mr-2 md:hidden">
@@ -35,7 +38,7 @@ const NavbarLayout = ({ children }) => {
                 Support
               </Link>
             </Popover.Group>
-            <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            {/* <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               {isAuthenticated ? (
                 <div>
                   <span>Logged in as {currentUser?.email}</span>{' '}
@@ -62,7 +65,12 @@ const NavbarLayout = ({ children }) => {
                   </Link>
                 </div>
               )}
+            </div> */}
+            {/* TEMP START */}
+            <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+              Account coming soon...
             </div>
+            {/* TEMP END */}
           </div>
         </div>
 
@@ -77,7 +85,7 @@ const NavbarLayout = ({ children }) => {
         >
           <Popover.Panel
             focus
-            className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+            className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition md:hidden"
           >
             <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
               <div className="px-5 pt-5 pb-6">
@@ -102,7 +110,7 @@ const NavbarLayout = ({ children }) => {
                     Support
                   </Link>
                 </div>
-                <div>
+                {/* <div>
                   <Link
                     to={routes.signup()}
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-600"
@@ -118,7 +126,10 @@ const NavbarLayout = ({ children }) => {
                       Sign in
                     </Link>
                   </p>
-                </div>
+                </div> */}
+                {/* TEMP START */}
+                <div className="">Account coming soon...</div>
+                {/* TEMP END */}
               </div>
             </div>
           </Popover.Panel>
