@@ -11,10 +11,10 @@ export const schema = gql`
   }
 
   type Query {
-    cards: [Card!]! @requireAuth
-    card(id: Int!): Card @requireAuth
-    cardonScore(score: Int!): [Card!] @requireAuth
-    cardonAlphabet(nameAlphabet: String!): [Card!] @requireAuth
+    cards: [Card!]! @skipAuth
+    card(id: Int!): Card @skipAuth
+    cardonScore(score: Int!): [Card!] @skipAuth
+    cardonAlphabet(nameAlphabet: String!): [Card!] @skipAuth
   }
 
   input CreateCardInput {
