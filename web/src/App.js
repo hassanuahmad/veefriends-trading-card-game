@@ -33,16 +33,26 @@ export const firebaseClient = {
   firebaseApp, // optional
 }
 
+//const App = () => (
+//  <FatalErrorBoundary page={FatalErrorPage}>
+//    <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+//      <AuthProvider client={firebaseClient} type="firebase">
+//        <RedwoodApolloProvider>
+//          <Routes />
+//        </RedwoodApolloProvider>
+//      </AuthProvider>
+//    </RedwoodProvider>
+//  </FatalErrorBoundary>
+//)
+
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-      <AuthProvider client={firebaseClient} type="firebase">
         <RedwoodApolloProvider>
           <Routes />
         </RedwoodApolloProvider>
-      </AuthProvider>
     </RedwoodProvider>
   </FatalErrorBoundary>
-)
+  )
 
 export default App
