@@ -38,7 +38,8 @@ const NavbarLayout = ({ children }) => {
                 Support
               </Link>
             </Popover.Group>
-            {/* <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+              {console.log('isAuth', isAuthenticated)}
               {isAuthenticated ? (
                 <div>
                   <span>Logged in as {currentUser?.email}</span>{' '}
@@ -52,7 +53,7 @@ const NavbarLayout = ({ children }) => {
               ) : (
                 <div>
                   <Link
-                    to={routes.login()}
+                    to={routes.signin()}
                     className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
                   >
                     Sign in
@@ -65,12 +66,7 @@ const NavbarLayout = ({ children }) => {
                   </Link>
                 </div>
               )}
-            </div> */}
-            {/* TEMP START */}
-            <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-              Account coming soon...
             </div>
-            {/* TEMP END */}
           </div>
         </div>
 

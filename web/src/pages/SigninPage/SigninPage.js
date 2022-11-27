@@ -2,17 +2,17 @@ import { useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Form, TextField, PasswordField, Submit } from '@redwoodjs/forms'
-import { routes, navigate } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-const SignupPage = () => {
-  const { client } = useAuth()
+const SigninPage = () => {
+  const { logIn } = useAuth()
   const [error, setError] = useState(null)
 
   const onSubmit = async (data) => {
     setError(null)
     try {
-      const response = await client.auth.signUp({
+      const response = await logIn({
         email: data.email,
         password: data.password,
       })
@@ -23,19 +23,20 @@ const SignupPage = () => {
       setError(error.message)
     }
   }
+
   return (
     <>
-      <MetaTags title="Signup" description="Signup page" />
+      <MetaTags title="Signin" description="Signin page" />
 
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <Form onSubmit={onSubmit}>
-        {error && <p>{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
         <TextField name="email" placeholder="email" />
         <PasswordField name="password" placeholder="password" />
-        <Submit>Sign Up</Submit>
+        <Submit>Sign In</Submit>
       </Form>
     </>
   )
 }
 
-export default SignupPage
+export default SigninPage
