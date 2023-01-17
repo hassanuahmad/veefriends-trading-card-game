@@ -1,15 +1,32 @@
 import { Fragment } from 'react'
 
-import { Popover, Transition } from '@headlessui/react'
+import { Menu, Popover, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { useAuth } from '@redwoodjs/auth'
+// import { Link, navigate, routes } from '@redwoodjs/router'
 import { Link, routes } from '@redwoodjs/router'
 
 import logo from 'src/assets/logo.png'
 
 const NavbarLayout = ({ children }) => {
+  // TODO: fix the dropdown which is menu item and stuff, for now its temporary
   const { isAuthenticated, currentUser, logOut } = useAuth()
+
+  // console.log('###', currentUser.sub)
+
+  // const accountDropdown = [
+  //   isAuthenticated && {
+  //     dropdownName: 'Profile Page',
+  //     action: routes.profile({ id: currentUser.sub }),
+  //   },
+  //   { dropdownName: 'Logout', action: logOut },
+  // ]
+
+  // function classNames(...classes) {
+  //   return classes.filter(Boolean).join(' ')
+  // }
 
   return (
     <>
@@ -32,6 +49,12 @@ const NavbarLayout = ({ children }) => {
             </div>
             <Popover.Group as="nav" className="hidden space-x-10 md:flex">
               <Link
+                to={routes.deckBuilder()}
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                Deck Builder
+              </Link>
+              <Link
                 to={routes.support()}
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
@@ -42,13 +65,61 @@ const NavbarLayout = ({ children }) => {
               {console.log('isAuth', isAuthenticated)}
               {isAuthenticated ? (
                 <div>
-                  <span>Logged in as {currentUser?.email}</span>{' '}
+                  {/* <span>Logged in as {currentUser?.email}</span>{' '}
                   <button
                     onClick={logOut}
                     className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-600"
                   >
                     Logout
-                  </button>
+                  </button> */}
+                  <Menu as="div" className="relative inline-block text-left">
+                    <div>
+                      <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        {currentUser?.email}
+                        <ChevronDownIcon
+                          className="-mr-1 ml-2 h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </Menu.Button>
+                    </div>
+
+                    {/* <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    > */}
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1">
+                        <Link to={routes.profile({ id: currentUser.sub })}>
+                          Profile Page
+                        </Link>
+                        <button onClick={logOut}>Logout</button>
+                        {/* {accountDropdown.map((a, id) => (
+                          <Menu.Item key={id} as={Fragment}>
+                            {({ active }) => (
+                              <button
+                                key={id}
+                                className={classNames(
+                                  active
+                                    ? 'bg-gray-100 text-gray-900'
+                                    : 'text-gray-700',
+                                  'block w-full px-4 py-2 text-left text-sm'
+                                )}
+                                onClick={a.action}
+                              >
+                                {a.dropdownName}
+                              </button>
+                            )}
+                          </Menu.Item>
+                        ))} */}
+                      </div>
+                    </Menu.Items>
+                    {/* </Transition> */}
+                  </Menu>
                 </div>
               ) : (
                 <div>
@@ -132,17 +203,20 @@ const NavbarLayout = ({ children }) => {
         </Transition>
       </Popover>
       <main>{children}</main>
-      <div className="border-t px-6 py-12 md:px-14 lg:px-20 xl:px-52">
-        VeeFriends Trading Cards - Made by{' '}
-        <a
-          href="https://twitter.com/hapaise"
-          target="_blank"
-          rel="noreferrer"
-          className="underline"
-        >
-          @hapaise
-        </a>{' '}
-        - Not affliated with VeeFriends
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* <div className="border-t px-6 py-12 md:px-14 lg:px-20 xl:px-52"> */}
+        <div className="border-t py-6">
+          VeeFriends Trading Cards - Made by{' '}
+          <a
+            href="https://twitter.com/hapaise"
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            @hapaise
+          </a>{' '}
+          - Not affliated with VeeFriends
+        </div>
       </div>
     </>
   )

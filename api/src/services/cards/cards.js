@@ -16,6 +16,10 @@ export const cardonScore = ({ score }) => {
   })
 }
 
+export const allCardsDeckBuilder = () => {
+  return db.card.findMany()
+}
+
 export const cardonAlphabet = ({ nameAlphabet }) => {
   return db.card.findMany({ where: { nameAlphabet } })
 }

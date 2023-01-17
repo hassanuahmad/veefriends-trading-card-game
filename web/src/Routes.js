@@ -26,9 +26,10 @@ const Routes = () => {
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/signin" page={SigninPage} name="signin" />
 
-        <Route path="/profilepage" page={ProfilePage} name="profile" />
+        <Route path="/{id:String}/profilepage" page={ProfilePage} name="profile" />
+        <Route path="/deckbuilder" page={DeckBuilderPage} name="deckBuilder" prerender />
 
-        <Route path="/" page={HomePage} name="home" />
+        <Route path="/" page={HomePage} name="home" prerender />
         <Route path="/card/{id:Int}" page={CardPage} name="singleCard" />
         <Route path="/support" page={SupportPage} name="support" />
         <Route notfound page={NotFoundPage} />
