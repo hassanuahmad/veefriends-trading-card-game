@@ -15,6 +15,7 @@ export const schema = gql`
     card(id: Int!): Card @skipAuth
     cardonScore(score: Int!): [Card!] @skipAuth
     cardonAlphabet(nameAlphabet: String!): [Card!] @skipAuth
+    allCardsDeckBuilder: [Card!]! @requireAuth
   }
 
   input CreateCardInput {

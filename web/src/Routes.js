@@ -23,14 +23,13 @@ const Routes = () => {
         <Route path="/cards" page={CardCardsPage} name="cards" />
       </Set>
       <Set wrap={NavbarLayout}>
-        <Route path="/login" page={LoginPage} name="login" />
         <Route path="/signup" page={SignupPage} name="signup" />
-        <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-        <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+        <Route path="/signin" page={SigninPage} name="signin" />
 
-        <Route path="/profilepage" page={ProfilePage} name="profile" />
+        <Route path="/{id:String}/profilepage" page={ProfilePage} name="profile" />
+        <Route path="/deckbuilder" page={DeckBuilderPage} name="deckBuilder" prerender />
 
-        <Route path="/" page={HomePage} name="home" />
+        <Route path="/" page={HomePage} name="home" prerender />
         <Route path="/card/{id:Int}" page={CardPage} name="singleCard" />
         <Route path="/support" page={SupportPage} name="support" />
         <Route notfound page={NotFoundPage} />

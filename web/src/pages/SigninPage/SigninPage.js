@@ -2,18 +2,17 @@ import { useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Form, TextField, PasswordField, Submit } from '@redwoodjs/forms'
-import { routes, navigate } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-const SignupPage = () => {
-  const { client } = useAuth()
+const SigninPage = () => {
+  const { logIn } = useAuth()
   const [error, setError] = useState(null)
 
   const onSubmit = async (data) => {
-    console.log(data)
     setError(null)
     try {
-      const response = await client.auth.signUp({
+      const response = await logIn({
         email: data.email,
         password: data.password,
       })
@@ -24,23 +23,24 @@ const SignupPage = () => {
       setError(error.message)
     }
   }
+
   return (
     <>
-      <MetaTags title="Signup" description="Signup page" />
+      <MetaTags title="Signin" description="Signin page" />
 
-      {/* <h1>Sign Up</h1>
+      {/* <h1>Sign In</h1>
       <Form onSubmit={onSubmit}>
-        {error && <p>{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
         <TextField name="email" placeholder="email" />
         <PasswordField name="password" placeholder="password" />
-        <Submit>Sign Up</Submit>
+        <Submit>Sign In</Submit>
       </Form> */}
 
       <div className="flex min-h-full items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">
-              Create an account
+              Sign in to your account
             </h2>
           </div>
           <Form className="mt-8 space-y-6" onSubmit={onSubmit}>
@@ -75,37 +75,30 @@ const SignupPage = () => {
                   placeholder="Password"
                 />
               </div>
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Twitter handle
-                </label>
-                <TextField
-                  id="twitter-handle"
-                  name="email"
-                  type="text"
-                  required
-                  className="focus:green-indigo-500 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:outline-none focus:ring-green-500 sm:text-sm"
-                  placeholder="Twitter handle (ex. hapaise)"
-                />
-              </div>
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Discord
-                </label>
-                <TextField
-                  id="discord"
-                  name="discord"
-                  type="text"
-                  required
-                  className="focus:green-indigo-500 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:outline-none focus:ring-green-500 sm:text-sm"
-                  placeholder="Discord (ex. hapaise#1231)"
-                />
-              </div>
             </div>
+
+            {/* <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                />
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  Remember me
+                </label>
+              </div>
+
+              <div className="text-sm">Forgot your password?</div>
+            </div> */}
 
             <div>
               <Submit className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-500 py-2 px-4 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                Sign up
+                Sign in
               </Submit>
             </div>
           </Form>
@@ -115,4 +108,4 @@ const SignupPage = () => {
   )
 }
 
-export default SignupPage
+export default SigninPage

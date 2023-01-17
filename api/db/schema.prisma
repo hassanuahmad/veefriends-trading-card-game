@@ -21,3 +21,11 @@ model Card {
   skill     Int
   stamina   Int
 }
+
+// model User {
+//   id        Int @id @default(autoincrement())
+//   email     String
+//   twitter   String
+//   discord   String
+//   cards     Card @relation(fields: [email], references: [id])
+// }
